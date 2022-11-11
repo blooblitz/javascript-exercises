@@ -1,5 +1,17 @@
-const findTheOldest = function() {
+const findTheOldest = function(data) {
+    const oldest = data.reduce((oldest, current) => {
+        const oldestAge = getAge(oldest.yearOfBirth, oldest.yearOfDeath);
+        const currentAge = getAge(current.yearOfBirth, current.yearOfDeath);
+        return oldestAge < currentAge ? current : oldest;
+    });
+    return oldest;
+}
 
+function getAge(birth, death) {
+    if (!death) {
+        death = new Date().getFullYear();
+    }
+    return death - birth;
 };
 
 // Do not edit below this line
